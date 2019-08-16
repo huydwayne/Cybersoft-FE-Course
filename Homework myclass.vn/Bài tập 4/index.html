@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Bài Tập 4</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="wrapper py-4">
+    <!-- Trang đăng kí -->
+    <div class="signup-container" id="signUp-container" >
+      <button class="ml-5 button active">
+        ĐĂNG KÍ </button>
+
+      <button class="button" onclick="changeToSignIn()">
+        ĐĂNG NHẬP
+      </button>
+
+      <h5 class="mt-4 mb-0 font-weight-bold text-center">ĐĂNG KÍ THÀNH VIÊN</h5>
+      <hr>
+      <div id="thongBao" class="bg-danger mb-4 w-75 m-auto" style="display:none">
+        <ul id="listThongBao">
+
+        </ul>
+      </div>
+      <form action="#" class="form">
+        <div class="form-input">
+          <h5>Tên đăng nhập</h5>
+          <input type="text" id="username">
+        </div>
+        <div class="form-input">
+          <h5>Mật khẩu</h5>
+          <input type="text" id="pass">
+        </div>
+        <div class="form-input">
+          <h5>Email</h5>
+          <input type="text" id="email">
+        </div>
+        <div class="form-input">
+          <h5>Nghề nghiệp</h5>
+          <select id="job">
+            <option value=""></option>
+            <option value="Kỹ sư">Kỹ sư</option>
+            <option value="IT">IT</option>
+
+          </select>
+        </div>
+        <div class="form-input">
+          <h5>Tuổi</h5>
+          <input type="text" id="age">
+        </div>
+        <div class="form-input">
+          <h5>Giới tính</h5>
+          <input checked="checked" name="sex" type="radio" class="sex mr-1"> <span class="mr-3">Nam</span>
+          <input type="radio" name="sex" class="sex mr-1"> <span>Nữ</span>
+        </div>
+      </form>
+      <div class="end">
+        <button class="button active button-form-signin" onclick="dangKi()">ĐĂNG KÍ</button>
+      </div>
+      <div class="note text-center mt-4">
+        <span>Bạn đã có tài khoản? Vui lòng click </span>
+        <a href="#" class="font-weight-bold" onclick="changeToSignIn()">Đăng nhập</a>
+      </div>
+    </div>
+    <!-- Trang đăng nhập -->
+    <div class="signIn-container"  style="display: none" id="signIn-container">
+      <button class="ml-5 button " onclick="changeToSignUp()">
+        ĐĂNG KÍ </button>
+
+      <button class="button  active">
+        ĐĂNG NHẬP
+      </button>
+
+      <h5 class="mt-4 mb-0 font-weight-bold text-center">ĐĂNG NHẬP</h5>
+      <hr>
+      <div id="signup-success" class="bg-success mb-4 w-75 m-auto text-center" style="display:none">
+          <h5 class=" mb-3">Chúc mừng bạn đã đăng kí thành công. 
+           <br> Đăng nhập để sử dụng!</h5>
+        </div>
+      <form action="#" class="form">
+        <div class="form-input">
+          <h5>Tên đăng nhập</h5>
+          <input type="text" id="username-signin">
+        </div>
+        <div class="form-input" >
+          <h5>Mật khẩu</h5>
+          <input type="password" id="pass-signin">
+        </div>
+      <label><input type="checkbox" class="checkbox"/> <span class="checkbox-text"> Ghi nhớ lần sau</span></label>
+      <a href="#" class="forgot">Quên mật khẩu?</a>
+      <div class="end">
+        <button class="button active button-form">ĐĂNG NHẬP</button>
+      </div>
+      <div class="note text-center mt-4">
+        <span>Bạn <span class="font-weight-bold">chưa</span> có tài khoản? Vui lòng click </span>
+        <a href="#" class="font-weight-bold" onclick="changeToSignUp()">Đăng kí</a>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <script src="./main.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

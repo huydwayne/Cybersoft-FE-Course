@@ -1,0 +1,29 @@
+_satellite.pushAsyncScript(function(event, target, $variables){
+  s.manageVars("clearVars");
+
+
+
+s.linkTrackVars="eVar12,eVar16,eVar18,prop12,prop16,prop23,prop24";
+
+s.prop23=_satellite.getVar("onclick: content type");
+
+if(digitaldata.vehicle != undefined){
+  if(digitaldata.vehicle.nameplate != undefined){
+    s.eVar12=s.prop12=_satellite.getVar("vehicle: model year")
+    s.eVar16=s.prop16=_satellite.getVar("vehicle: nameplate")
+  }
+  if(digitaldata.vehicle.bodyModelTrim != undefined){
+    s.evar18=_satellite.getVar("vehicle: body model trim")
+  }
+}
+
+if(digitaldata.onclick != undefined){
+  if(digitaldata.onclick.contentSubType != undefined){
+    s.prop24=_satellite.getVar("onclick: content sub type")
+  }
+}
+
+_satellite.track("master-rule-onclick");
+
+
+});

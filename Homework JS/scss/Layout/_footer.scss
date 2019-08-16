@@ -1,0 +1,16 @@
+.footer{
+    padding: 5px 0;
+    text-align: center;
+    background-color:$color-black-0;
+    color: $color-white-0;
+    @media screen and (max-width:378px) {
+        .phone{
+            margin-top: 20px;
+            display: block;
+        }
+        .break{
+            margin: 5px 0;
+            display: block;
+        }
+    }
+}

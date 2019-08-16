@@ -1,0 +1,20 @@
+@mixin color($bg-color, $color) {
+  background-color: $bg-color;
+  color: $color;
+}
+
+@mixin blur-text() {
+  color: transparent;
+  text-shadow: 0 0 6px grey;
+}
+
+@mixin blur-text-bold() {
+  color: transparent;
+  text-shadow: 0 0 6px black;
+}
+
+@mixin blur-text-important() {
+  font-size: $fs-2;
+  text-shadow: 0 0 6px red;
+
+}

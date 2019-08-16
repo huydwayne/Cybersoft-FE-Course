@@ -1,0 +1,33 @@
+.cover{
+  background-image: url("../img/cover.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 500px;
+  position: relative;
+  &__content{
+    width: 35%;
+    margin-left: 10%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &__form{
+    .form-control{
+      border: none;
+      &::placeholder{
+        @include text($color-black-0, $fs-2, $fw-normal);
+      }
+      &:focus{
+        box-shadow: none;
+      }
+    }
+    .input-group-prepend{
+      .input-group-text{
+        background-color: $color-white-0;
+        border: none;
+        color: $color-red-0;
+      }
+    }
+  }
+}

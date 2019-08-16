@@ -1,0 +1,137 @@
+.print{
+    display: none;
+    animation: printBill 2s 1 0s linear;
+    .container{
+        background-color: $color-header-background;
+        border-top: 2px dashed black;
+    }
+    
+    // Print-Header
+    .print__header{
+        .header-logo{
+            img{
+                width: 100%;
+            }
+        }
+        .header-title{
+            text-align: center;
+            color: $color-print-title;
+            .header-title-text{
+                color: $color-print-title2;
+                .header-title-date{
+                    color: $color-print-text;
+                    
+                }
+            }
+        }
+
+        .header-info{
+            h6{
+                color: $color-print-title2;
+            }
+            span{
+                @include blur-text;
+            }
+            .span-bold{
+                @include blur-text-bold;
+            }
+        }
+    }
+    // Print-Company
+    .print__company{
+        h5{
+            font-weight: bold;
+        }
+        h6{
+            color: $color-print-title2; 
+        }
+        span{
+            @include blur-text;
+        }
+        .span-bold{
+            @include blur-text-bold;
+        }
+        .company-important{
+            @include blur-text-important;
+        }
+    }
+    // Print-Customer
+    .print__customer{
+      
+
+        .customer-name{
+            font-size: $fs-2 - 2px;
+            color: $color-print-title;
+            #customer-name-print{
+                color: black;
+                text-shadow: none;
+                font-size: $fs-2+5px;
+                font-weight: bold;
+            }
+        }
+        h6{
+            color: $color-print-title2;
+        }
+        span{
+            @include blur-text;
+        }
+        .span-bold{
+            @include blur-text-bold;
+        }
+        .company-important{
+            @include blur-text-important;
+        }
+    }
+    // Print-customer-bill
+    .print__customer-bill{
+        .table.table-bordered{
+            border: 1px solid black;
+            thead{
+                tr{
+                    th{
+                        border: 1px solid black;
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    td{
+                        border: 1px solid black;
+                    }
+                }
+            }
+        }
+
+        .table-title{
+            @include color(#D8D7D5,royalblue);
+        }
+        span{
+            @include blur-text;
+        }
+        .span-bold{
+            @include blur-text-bold;
+        }
+        .company-important{
+            @include blur-text-important;
+        }
+        
+        #xuatTien-bill{
+            font-size: $fs-3;
+            color: red;
+            font-weight: bold;
+        }
+
+       
+    }
+    @keyframes printBill{
+        0%{
+        }
+        1%{
+            transform: translateY(-850px);
+            }
+        100%{
+            }
+    }
+    
+    
+}

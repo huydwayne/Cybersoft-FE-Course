@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bai Tap 1</title>
+</head>
+<body>
+    <div class="wrapper">
+        Số dòng <input type="text" id="txtSoDong">
+        Số cột <input type="text" id="txtSoCot">
+        <div id="table-container">
+
+        </div>
+            <button onclick="taoTable()">Tạo table động</button>
+    </div>
+
+    <script>
+    function taoTable(){
+    //Input: Lấy giá trị số dòng và số cột
+        // Lấy giá trị số dòng và số cột
+        var soDong=document.getElementById('txtSoDong').value;
+        var soCot= document.getElementById('txtSoCot').value;
+        soDong=parseInt(soDong);
+        soCot=parseInt(soCot);
+        // Lấy địa điểm chứa bảng
+        var DivID = document.getElementById('table-container');
+    // Xử lý:
+        // b1. Tạo thẻ table
+        var tagTable = document.createElement('table');
+        tagTable.border = 1;
+        // b2. Tạo dòng và cột gắn vào table
+        for (var i=0; i<soDong;i++){
+            var tagTR = document.createElement('tr');
+            for (var j=0;j<soCot;j++){
+                var tagTD = document.createElement('td');
+                var textNode = document.createTextNode(i+''+j);
+                tagTD.appendChild(textNode);
+                tagTR.appendChild(tagTD);
+            }
+            tagTable.appendChild(tagTR);
+        }
+    // Output: Tạo bảng động
+     DivID.appendChild(tagTable);
+    }
+    </script>
+</body>
+</html>

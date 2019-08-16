@@ -1,0 +1,92 @@
+.wrapper{
+    width: 600px;
+    height: 705px;
+    margin: 0 auto;
+    background-color: lightseagreen;
+}
+
+.button{
+    border: 1px solid black;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 3px;
+}
+.button.active{
+    background-color: darkgoldenrod;
+}
+.button:hover{
+    background-color: gold;
+}
+
+hr{
+    border: 1px solid brown;
+    width: 80%;
+    margin-top: 0;
+}
+
+.form{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.form .form-input{
+    margin-bottom: 20px;
+}
+
+.form h5{
+    display: inline-block;
+    width: 35%;
+}
+
+.form select{
+    padding: 0 60px;
+    width: 183px;
+    height: 30px;
+}
+
+.button-form{
+    padding: 5px 50px;
+    margin-left: 28%;
+}
+
+.button-form-signin{
+    padding: 5px 50px;
+    margin-left: 38%;
+}
+
+.form .sex{
+    width: 5%;
+    height: 20px;
+}
+.form > span{
+   font-size: 25px;
+}
+label{
+display: block;
+text-align: center;
+}
+.checkbox{
+    width: 15px;
+    height: 15px;
+}
+
+.checkbox-text {
+    
+    font-size: 20px;
+}
+
+.forgot{
+    text-decoration: none;
+    color: orange;
+    font-size: 20px;
+    display: block;
+    text-align:center;
+    margin: 10px 0;
+}
+
+.forgot:hover{
+    text-decoration: none;
+    color: orange;
+    opacity: .8;
+}

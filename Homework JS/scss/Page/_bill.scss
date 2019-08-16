@@ -1,0 +1,123 @@
+.bill {
+  .bill__title {
+    width: 60%;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px dashed $color-black-0;
+    margin-bottom: 40px;
+  }
+
+  .bill__content {
+  
+    .bill__price {
+      .bill__price-title{
+        font-size: 26px;
+        text-decoration: underline;
+        padding-bottom: 5px;
+      }
+        .table{
+          text-align: center;
+        }
+        .table-bordered{
+          background-color: #1B3F95;
+          opacity: .9;
+          color: white;
+            border: 3px solid #dee2e6;
+            .table-title{
+              text-transform: uppercase;
+              font-size: 18px;
+            }
+        }
+        
+    }
+
+    .bill__result {
+      .bill__customer {
+          .name-input {
+            width: 65%;
+            border: none;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dbdbdb;
+            transition: all 0.3s;
+            &:focus {
+              outline: none;
+              border-bottom-color: $color-main;
+            }
+
+          }
+
+          .number-input{
+              @extend .name-input;
+          }
+        
+      }
+
+      .bill__button{
+          margin-top: 40px;
+          a{
+            color: $color-white-0;
+            text-decoration: none;
+            padding: 8px 40px;
+            border-radius: 25px;
+            border: none;
+            border: 1px solid $color-header-background;
+            color: $color-white-0;
+            font-weight: 500;
+            background: linear-gradient(to bottom, #FFA330 0%,#FC7209 100%);
+            transition: all 0.3s;
+            &:focus{
+                outline: none;
+            }
+
+            &:hover{
+                opacity: .9;
+                color: red;
+            }
+            @media screen and (max-width: 412px) {
+              &{
+                display: inline-block;
+                margin-top: 10px;
+              }
+            }
+          }
+          .bill-btn{
+            
+            padding: 8px 40px;
+            border-radius: 25px;
+            border: none;
+            border: 1px solid $color-header-background;
+            color: $color-white-0;
+            font-weight: 500;
+            background: linear-gradient(to bottom, #FFA330 0%,#FC7209 100%);
+            transition: all 0.3s;
+            &:focus{
+                outline: none;
+            }
+
+            &:hover{
+                opacity: .9;
+                color: red;
+            }
+          }
+      }
+    }
+
+    
+  }
+
+  .bill__thanh-tien{
+    display: none;
+    margin: 0 auto;
+    h5{
+      font-weight: bold;
+      font-style: italic;
+      font-size: 22px;
+      color: red;
+    }
+    // background-color: palegreen;
+    text-align: center;
+    .xuatTien{
+      color: purple;
+    }
+  }
+}

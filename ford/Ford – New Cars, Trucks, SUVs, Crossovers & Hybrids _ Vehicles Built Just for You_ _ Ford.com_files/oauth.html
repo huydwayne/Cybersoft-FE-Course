@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)https://www.clw.ford.com/oauth -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>oAuth Proxy</title>
+    <!-- JSP -->
+    <!-- CLA_BUILD_STAMP = "2019/3/7.155459";//CLA_BUILD_STAMP -->
+    <script>
+        (function(){
+
+            var urlRegEx = /^https?\:\/\/*(([a-zA-Z0-9-]){0,62}\.)*((ford|lincoln|lincolncanada|fordpass|motorcraftservice|brandauthoreu|brandeu|fordpartner|fordgt)\.com|lincoln\.mx|(ford(\.ca|\.at|\.co\.uk|\.cz|\.de|\.dk|\.es|\.fi|\.fr|\.gr|\.hu|\.ie|\.it|\.lu|\.nl|\.no|\.pl|\.pt|\.ro|\.ru|\.se|\.si|\.tr|\.be|\.ch|\.mx)))(:(([3-8][0-9]{3}|9000)$|(443)$|(80)$)|$)/;
+            
+            /*
+                If, return origin isn't accepted
+                Then, don't allow scripts to run
+             */
+            if( !testUrl(getReturnOrigin()) ){
+            	return;
+            }
+
+            // utilities
+            //
+            function getURLHostString(iurl) {
+                var parser = document.createElement('a');
+                parser.href = iurl;
+                return parser.protocol + "//" + parser.host;
+            }
+            function getParentUrl() {
+                var isInIframe = (parent !== window),
+                        parentUrl = document.location.href;
+                if (isInIframe) {
+                    parentUrl = document.referrer;
+                }
+                return getURLHostString(parentUrl);
+            }
+            function getReturnOrigin() {
+                //putting this in separate function in case fallback logging is needed
+                if (isOriginAccepted(getParentUrl())) {
+                    return getParentUrl();
+                } else {
+                    //CLWOX.log("getReturnOrigin total fallback");
+                    return "http://www.ford.com";
+                }
+            }
+            function isOriginAccepted(url) {
+
+                if (typeof url !== "string"){
+                    return false;
+                }
+
+                url = getURLHostString(url);
+
+                return testUrl(url);
+            }
+
+            function responseDataStringToObject(resp){
+                try{
+                    return JSON.parse(resp.data);
+                }catch(e){
+                    return null;
+                }
+            }
+
+            function testUrl(str){
+                if( typeof str !== 'string' ){
+                    return false;
+                }
+                return urlRegEx.test(str);
+            }
+            //
+            //
+
+            function receiveMessage(e){
+            	
+            	var data = responseDataStringToObject(e);
+
+                if( !data || typeof data.type !== 'string' ) {
+                    sendMessage({
+                        type: 'error',
+                        resp: 'Data format is invalid',
+                        _id: null
+                    });
+                    return;
+                }
+            	
+                if( !e || !e.origin || !testUrl(e.origin) ){
+
+                    sendMessage({
+                        type: 'error',
+                        resp: 'Origin error',
+                        _id: data.id
+                    });
+                	
+                    return;
+                }
+                
+                if( !data.type || data.type === 'FCIS:set' || data.type === 'set' ) {
+	
+	                if (window.localStorage) {
+	                	
+	                	var gtwayUUID = '';
+	                	
+	                	try{
+			                
+	                		var current = JSON.parse(window.localStorage.getItem('CLW_OAR'));
+	                		
+	                		if( !data.data.gtwayUUID ){
+	                			data.data.gtwayUUID = current.data.gtwayUUID || '';
+                            }
+			                
+                        }catch(err){
+	                		
+                        }
+	                	
+		                window.localStorage.setItem('CLW_OAR', JSON.stringify(data));
+	                }
+	
+	                sendMessage({
+		                type: 'success',
+		                resp: data.data,
+		                _id: data.id
+		                , tokenType: "FCIS"
+	                });
+	
+                } else if ( data.type && (data.type === 'FCIS_USER_GUID:set') ) {
+	
+                	var oar = null;
+                	
+	                if (window.localStorage) {
+	                	try {
+			                oar = JSON.parse( window.localStorage.getItem('CLW_OAR') );
+		                }catch(err){
+	                		
+                        }
+	                }
+	                
+	                try {
+	                	
+		                if (oar === null) {
+			                oar = {
+				                data: {
+					                gtwayUUID: data.data.gtwayUUID
+				                }
+			                }
+		                } else {
+			                oar.data.gtwayUUID = data.data.gtwayUUID;
+		                }
+		                
+		                window.localStorage.setItem('CLW_OAR',JSON.stringify(oar));
+		
+	                }catch(err){
+	                	
+                    }
+	                
+                    sendMessage({
+		                type: 'success',
+		                resp: oar,
+		                _id: data.id
+		                , tokenType: "FCIS_USER_GUID"
+	                });
+
+                } else if ( data.type && (data.type === 'FCIS:retrieve' || data.type === "retrieve") ) {
+                	
+                	try {
+
+                        sendMessage({
+                            type: 'retrieve',
+                            resp: window.localStorage.getItem('CLW_OAR'),
+                            _id: data.id
+	                        , tokenType:"FCIS"
+                        });
+
+                    }catch(e){
+                		
+                    }
+                } else if ( data.type && (data.type === 'FCIS:clear' || data.type === 'clear') ) {
+                	try{
+                		
+                		window.localStorage.removeItem('CLW_OAR');
+                		
+		                sendMessage({
+			                type: 'clear',
+			                resp: null,
+			                _id: data.id
+			                , tokenType:"FCIS"
+		                });
+                    }catch(e){
+                		
+                    }
+                } else if( !data.type || data.type === 'CAT:set' ) {
+
+                    if (window.localStorage) {
+                    	
+                    	
+	                    var catstore = window.localStorage.getItem('CLW_CAR') || {};
+	
+	                    if (typeof catstore === 'string') catstore = JSON.parse(catstore);
+	
+	                    var applicationId = data.applicationId
+                                                ? data.applicationId
+                                                : data && data.data && data.data.applicationId
+                                                    ? data.data.applicationId
+                                                    : null;
+	
+	                    try {
+		                    catstore[applicationId] = {
+			                    access_token: data.data.access_token
+			                    , refresh_token: data.data.refresh_token
+			                    , cat1_token: data.data.cat1_token
+			                    , userId: data.data.userId
+                                , hashedUserId: data.data.hashedUserId
+                                , provider: data.data.provider
+                                , timeSet : typeof data.data.timeSet === 'number'
+                                                ? data.data.timeSet
+                                                : (catstore[applicationId] && catstore[applicationId].timeSet || 0)
+		                    };
+		
+		                    catstore.recent = catstore[applicationId];
+		
+		                    if (catstore.recent !== null) {
+			                    catstore.recent.applicationId = applicationId;
+		                    }
+		
+		                    window.localStorage.setItem('CLW_CAR', JSON.stringify(catstore));
+		
+		                    sendMessage({
+			                    type: 'set',
+			                    resp: catstore[applicationId] || data.data || null,
+			                    _id: data.id
+			                    , tokenType: "CAT"
+		                    });
+	                    }catch(err){
+		                    sendMessage({
+			                    type: 'set',
+			                    resp: null,
+			                    _id: data.id
+			                    , tokenType:"CAT"
+		                    });
+	                    }
+                    }
+
+                } else if ( data.type && data.type === 'CAT:retrieve' ) {
+                	
+                	try {
+		
+		                var response = JSON.parse(window.localStorage.getItem('CLW_CAR'))[data.applicationId];
+		                
+		                response.applicationId = data.applicationId;
+                		
+                        sendMessage({
+                            type: 'retrieve',
+                            resp: response,
+                            _id: data.id
+	                        , tokenType:"CAT"
+                        });
+
+                    }catch(e){
+		                sendMessage({
+			                type: 'retrieve',
+			                resp: null,
+			                _id: data.id
+			                , tokenType:"CAT"
+		                });
+                    }
+                    
+                } else if ( data.type && data.type === 'CAT:retrieve-all' ) {
+	
+	                try {
+		
+		                var response = JSON.parse(window.localStorage.getItem('CLW_CAR'));
+		
+		                response.applicationId = data.applicationId;
+		
+		                sendMessage({
+			                type: 'retrieve',
+			                resp: response,
+			                _id: data.id
+			                , tokenType:"CAT"
+		                });
+		
+	                }catch(e){
+		                sendMessage({
+			                type: 'retrieve',
+			                resp: null,
+			                _id: data.id
+			                , tokenType:"CAT"
+		                });
+	                }
+                	
+                } else if ( data.type && data.type === 'CAT:recent' ) {
+	
+	                try {
+		
+		                var response = JSON.parse(window.localStorage.getItem('CLW_CAR')).recent;
+		
+		                response.applicationId = data.applicationId;
+		
+		                sendMessage({
+			                type: 'retrieve',
+			                resp: response,
+			                _id: data.id
+			                , tokenType:"CAT"
+		                });
+		
+	                }catch(e){
+		                sendMessage({
+			                type: 'retrieve',
+			                resp: null,
+			                _id: data.id
+			                , tokenType:"CAT"
+		                });
+	                }
+                	
+                } else if ( data.type && data.type === 'CAT:clear' ) {
+                	try{
+                		
+                		window.localStorage.removeItem('CLW_CAR');
+                		
+		                sendMessage({
+			                type: 'clear',
+			                resp: null,
+			                _id: data.id
+			                , tokenType:"CAT"
+		                });
+		                
+                    }catch(e){
+                		
+                    }
+                } else if( data.type && data.type === 'all-tokens' ){
+                    
+                	try{
+                		
+                		sendMessage({
+                            type: data.type
+                            , resp: {
+                            	oauth: window.localStorage.getItem('CLW_OAR')
+                            	, cat: window.localStorage.getItem('CLW_CAR')
+                                , guestUserGuid: window.localStorage.getItem('guestUserGuid')
+                            }
+                            ,_id:data.id
+                            , tokenType:'all'
+                        });
+                		
+                    }catch(err){
+		                sendMessage({
+			                type: data.type
+			                , resp: {
+				                oauth: null
+				                , cat: null
+                                , guestUserGuid: null
+			                }
+			                ,_id:data.id
+			                , tokenType:'all-tokens'
+		                });
+                    }
+                	
+                	
+                } else if ( data.type && /^guestUserGuid:(set|retrieve|clear)$/i.test(data.type) ) {
+                	
+                	var result
+                        , token = 'guestUserGuid'
+                        , action
+                        , applicationId
+                        , guestUserGuidStorage;
+                	
+                	try {
+                		
+                		result = /^guestUserGuid:(set|retrieve|clear)$/i.exec(data.type);
+		                token =  'guestUserGuid';   
+		                action = result
+                                    ? result[1].toLowerCase()
+                                    : null;
+		
+		                applicationId = data.applicationId;
+		                
+		                if( !applicationId ) {
+		                    applicationId = data.data && data.data.applicationId
+                                            ? data.data.applicationId
+                                            : null;
+		                }
+		
+		                if( !applicationId && action !== 'clear' ){
+			                throw new Error('ApplicationId is required');
+		                }else {
+			
+			                guestUserGuidStorage = window.localStorage.getItem('guestUserGuid');
+			
+			                if (typeof guestUserGuidStorage === 'string') {
+				                try {
+					                guestUserGuidStorage = JSON.parse(guestUserGuidStorage);
+				                } catch (err) {
+				                	
+				                	var tempGuestGuidStorage = {};
+				                	    tempGuestGuidStorage[applicationId] = guestUserGuidStorage;
+					
+					                guestUserGuidStorage = tempGuestGuidStorage;
+				                	    
+					                window.localStorage.setItem('guestUserGuid'
+                                        , JSON.stringify(guestUserGuidStorage)
+                                    );
+					
+					                
+				                }
+			                }
+			
+			                if (action) {
+				
+				                switch (action) {
+					                case 'set':
+						
+						                var __guestUserGuid = typeof data.data === 'object'
+							                ? data.data.guestUserGuid
+							                : typeof data.data === 'string'
+								                ? data.data
+								                : null;
+						
+						                if (__guestUserGuid) {
+							
+						                	if( guestUserGuidStorage === null ){
+								
+								                var tempGuestGuidStorage = {};
+								                    tempGuestGuidStorage[applicationId] = __guestUserGuid;
+						                		
+								                window.localStorage.setItem(token, JSON.stringify(tempGuestGuidStorage));
+                                            }else{
+								                guestUserGuidStorage[applicationId] = __guestUserGuid;
+								                window.localStorage.setItem(token, JSON.stringify(guestUserGuidStorage));   
+                                            }						                
+							
+							                sendMessage({
+								                type: 'success',
+								                resp: data.data = {guestUserGuid: __guestUserGuid},
+								                _id: data.id
+								                , tokenType: token
+							                });
+							
+						                } else {
+							                throw Error('guestUserGuid undefined');
+						                }
+						
+						                break;
+					
+					                case 'retrieve':
+						
+						                sendMessage({
+							                type: 'success',
+							                resp: {
+								                guestUserGuid: guestUserGuidStorage !== null
+                                                                ? guestUserGuidStorage[applicationId]
+                                                                : null
+							                },
+							                _id: data.id
+							                , tokenType: token
+						                });
+						
+						                break;
+					
+					                case 'clear':
+					                	
+					                	var wasCleared = false;
+					                	
+					                	if( !applicationId ) {
+							
+					                		if( window.localStorage.getItem(token) ) {
+								
+								                window.localStorage.removeItem(token);
+								
+								                wasCleared = true;
+								
+							                }
+							
+						                } else {
+							
+					                		if( guestUserGuidStorage[applicationId] ) {
+								
+								                wasCleared = true;
+								
+								                delete guestUserGuidStorage[applicationId];
+								
+								                if (Object.keys(guestUserGuidStorage).length >= 1) {
+									
+									                window.localStorage.setItem(token, JSON.stringify(guestUserGuidStorage));
+									
+								                } else {
+									
+									                if( window.localStorage.getItem(token) ) {
+										                window.localStorage.removeItem(token);
+									                }
+								                }
+								
+							                }
+                                        }
+						
+						                sendMessage({
+							                type: 'clear',
+							                resp: wasCleared,
+							                _id: data.id
+							                , tokenType: "guestUserGuid"
+						                });
+                                        
+						                break;
+					
+				                }
+			                }
+			
+		                }
+	                }catch(err){
+                		
+		                sendMessage({
+			                type: data.type
+			                , resp: null
+			                ,_id:data.id
+			                , tokenType: action || token
+		                });
+                    }
+                }
+            }
+            
+            function sendMessage(msg){
+            	
+            	var url = getReturnOrigin();
+
+                if( !isOriginAccepted(url) ){
+
+	                parent.postMessage(JSON.stringify({
+                        type: 'error',
+                        resp: 'Invalid url',
+                        _id: id
+                    }),url);
+
+                    return;
+                }
+            	
+                parent.postMessage(JSON.stringify(msg),url);
+            }
+            
+            window.addEventListener("message", receiveMessage, false);
+        	
+        }());
+    </script>
+
+                    <script async="" src="./aksb.min.js.download"></script><script>var w=window;if(w.performance||w.mozPerformance||w.msPerformance||w.webkitPerformance){var d=document;AKSB=w.AKSB||{},AKSB.q=AKSB.q||[],AKSB.mark=AKSB.mark||function(e,_){AKSB.q.push(["mark",e,_||(new Date).getTime()])},AKSB.measure=AKSB.measure||function(e,_,t){AKSB.q.push(["measure",e,_,t||(new Date).getTime()])},AKSB.done=AKSB.done||function(e){AKSB.q.push(["done",e])},AKSB.mark("firstbyte",(new Date).getTime()),AKSB.prof={custid:"259403",ustr:"cookiepresent",originlat:"0",clientrtt:"45",ghostip:"23.43.48.63",ipv6:false,pct:"10",clientip:"101.99.36.196",requestid:"a06e07",region:"31212",protocol:"h2",blver:14,akM:"dscx",akN:"ae",akTT:"O",akTX:"1",akTI:"a06e07",ai:"156760",ra:"false",pmgn:"wwwclwfordcom",pmgi:"",pmp:"",qc:""},function(e){var _=d.createElement("script");_.async="async",_.src=e;var t=d.getElementsByTagName("script"),t=t[t.length-1];t.parentNode.insertBefore(_,t)}(("https:"===d.location.protocol?"https:":"http:")+"//ds-aksb-a.akamaihd.net/aksb.min.js")}</script>
+                    </head>
+<body>
+
+
+</body></html>

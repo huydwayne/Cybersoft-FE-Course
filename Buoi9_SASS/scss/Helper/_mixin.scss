@@ -1,0 +1,20 @@
+@mixin text($color, $fs, $fw){
+  color: $color;
+  font-size: $fs;
+  font-weight: $fw;
+}
+
+@mixin button($color, $bg-color, $border-color, $color-hover, $bg-color-hover){
+  color: $color;
+  background-color: $bg-color;
+  border: 1px solid $border-color;
+  &:hover{
+    background-color: $bg-color-hover;
+    color: $color-hover;
+  }
+}
+$alias: animation;
+@mixin fade($fade-from: 0, $fade-to: 1, $animation-properties: 1s ease) {
+  $alias: fade- + str-replace($fade-from + '', '.', '-') + '-' + str-replace($fade-to + '', '.', '-') + $animation-properties;
+ 
+} 

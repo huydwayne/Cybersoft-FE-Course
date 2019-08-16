@@ -1,0 +1,218 @@
+html{
+    font-size: 16px;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+}
+
+.phone__number{
+    position: relative;
+}
+
+.phone__number::after{
+    content: "";
+    width: 1px;
+    height: 20px;
+    background-color: grey;
+    position: absolute;
+    right: -5px;
+    top: 2px;
+}
+
+/* NAVBAR */
+.myNavbar .nav-item{
+    position: relative;
+}
+
+.myNavbar .nav-item.active::after,
+.myNavbar .nav-item::after{
+    content: "";
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.5s;
+}
+
+.myNavbar .nav-item::after{
+    width: 0%; 
+}
+
+/* .myNavbar .nav-item.active::after,
+.myNavbar .nav-item:hover::after{
+    width: 100%;
+} */
+
+/* Carousel */
+.carousel-item{
+    position: relative;
+}
+
+.carousel__caption{
+    position: absolute;
+    width: 45%;
+    top: 55%;
+    left: 15%;
+    transform: translateY(-50%);
+}
+
+.carousel__caption > *{
+    color: white;
+}
+
+.carousel__caption > h6{
+   color: #fbbd61; 
+   font-weight: 400;
+}
+
+.button >span {
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.button >button{
+    width: 28%;
+    padding: 10px 0;
+    border-radius: 40px;
+    border-style: none;
+    color: white;
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+}
+
+.myCarousel{
+    position: relative;
+}
+
+.carousel-indicators{
+    position: absolute;
+    right: unset!important;
+    bottom: 50px!important;
+}
+
+.myCarousel .carousel-indicators li {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: black;
+    border: 2px solid white;
+    opacity: 1;
+}
+
+.myCarousel .carousel-indicators li.active{
+    background-color: white;
+}
+
+
+
+/* showing */
+
+.heading{
+    font-size: 20px;
+    border-bottom: 1px solid rgb(206, 204, 204);
+    padding-bottom: 10px;
+    color: #ec7532;
+}
+
+.heading span {
+    position: relative;
+    padding-bottom: 13px;
+}
+
+.heading span::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background:linear-gradient(to right,#fbbd61,#ec7532);
+}
+
+.showing .row .showing__item .movie__item {
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.showing .row .showing__item .movie__overlay{
+    position: absolute;
+    top: 0;
+    left: -400%;
+    transform: skewX(45deg);
+    background: linear-gradient(to bottom,#fbbd61,#ec7532);;
+    width: 800px;
+    height: 100%;
+    transition: all 0.5s;
+}
+
+.showing .row .showing__item:hover .movie__overlay{
+    left: -100%;
+}
+
+.movie__content{
+    position: absolute;
+    left: 50%;   
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    /* Translate -50% X là nếu default nó bắt đầu
+    từ chữ R của ReadMore thì -50% nó sẽ đẩy điểm
+    bắt đầu bớt -50% nữa thì sẽ thành bắt đầu lúc 50%
+    của content */
+}
+.play__button{
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* SCHEDULE */
+.schedule .nav-item {
+    position: relative;
+}
+
+.schedule .nav-item .nav-link{
+    color: black;
+}
+
+.schedule .nav-item .nav-link::after{
+    content: "";
+    height: 3px;
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+}
+
+.schedule .nav-item:hover .nav-link::after{
+    width: 100%;
+    transition-duration: 0.5s;
+}
+
+.schedule .nav-item .nav-link.active{
+    border: none;
+    color: black;
+    transition: all 0.5s;
+    
+}

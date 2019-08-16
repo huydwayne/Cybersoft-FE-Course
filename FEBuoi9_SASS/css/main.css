@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header .navbar-brand {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.header .navbar-brand img {
+  width: 110px;
+}
+
+.header .categories {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  color: #505763;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.header .input-search {
+  -webkit-box-flex: 5;
+      -ms-flex-positive: 5;
+          flex-grow: 5;
+}
+
+.header .input-search .input-group .form-control {
+  background-color: rgba(20, 23, 28, 0.05);
+  border: none;
+  -webkit-transition: none;
+  transition: none;
+}
+
+.header .input-search .input-group .form-control::-webkit-input-placeholder {
+  color: #505763;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.header .input-search .input-group .form-control:-ms-input-placeholder {
+  color: #505763;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.header .input-search .input-group .form-control::-ms-input-placeholder {
+  color: #505763;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.header .input-search .input-group .form-control::placeholder {
+  color: #505763;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.header .input-search .input-group .form-control:focus {
+  background-color: #fff;
+  border: 1px solid #a1a7b3;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.header .input-search .input-group .form-control:focus + .input-group-append .input-group-text {
+  background-color: #fff;
+  border: 1px solid #a1a7b3;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-left: none;
+}
+
+.header .input-search .input-group .form-control:focus + .input-group-append:hover .input-group-text {
+  background-color: #ec5252;
+}
+
+.header .input-search .input-group .form-control:focus + .input-group-append:hover i {
+  color: #fff;
+}
+
+.header .input-search .input-group .input-group-append {
+  cursor: pointer;
+}
+
+.header .input-search .input-group .input-group-append .input-group-text {
+  background-color: rgba(20, 23, 28, 0.05);
+  border: none;
+}
+
+.header .input-search .input-group .input-group-append .input-group-text i {
+  color: #ec5252;
+}
+
+.header .input-search .input-group .input-group-append:hover .input-group-text {
+  background-color: #ec5252;
+}
+
+.header .input-search .input-group .input-group-append:hover i {
+  color: #fff;
+}
+
+.header .bussiness,
+.header .instructor {
+  position: relative;
+}
+
+.header .bussiness .link-title,
+.header .instructor .link-title {
+  color: #29303b;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.header .bussiness .overlay,
+.header .instructor .overlay {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  top: 56px;
+  left: -100%;
+}
+
+.header .bussiness:hover,
+.header .instructor:hover {
+  background-color: rgba(20, 23, 28, 0.05);
+}
+
+.header .bussiness:hover .overlay,
+.header .instructor:hover .overlay {
+  display: block;
+  z-index: 2;
+}
+/*# sourceMappingURL=main.css.map */

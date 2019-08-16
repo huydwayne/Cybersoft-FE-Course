@@ -1,0 +1,46 @@
+.menu {
+  .navbar {
+    .navbar-brand {
+      &:hover {
+        color: $color-red-main;
+        background-color: #ffa330;
+      }
+    }
+    .navbar-toggler {
+    padding: 10px 15px; 
+      &:focus {
+        outline: none;
+      }
+        span{
+            i{
+                font-size: $fs-3 - 2px;
+                color: $color-white-0;
+            }
+      }
+    
+    }
+    @include color($color-main, $color-white-0);
+    background: linear-gradient(to bottom, #ffa330 0%, #fc7209 100%);
+
+    .myNavbarlinks {
+      .navbar-nav {
+        .nav-item {
+          .nav-link {
+            padding: 15px 10px;
+            text-align: center;
+            color: $color-white-0;
+            font-weight: bold;
+            font-size: $fs-1 + 1px;
+            &:hover {
+              color: $color-red-main;
+              background-color: #ffa330;
+            }
+            &.active {
+              @extend .nav-link:hover;
+            }
+          }
+        }
+      }
+    }
+  }
+}

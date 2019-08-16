@@ -1,0 +1,456 @@
+.header {
+  background-color: #FBFBFB;
+  color: #555;
+}
+
+.header__container {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media screen and (max-width: 547px) {
+  .header__container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .header__container .header__logo {
+    margin-bottom: 15px;
+  }
+  .header__container .header__logo img {
+    width: 100%;
+  }
+  .header__container .header__content .content-search input {
+    width: 90%;
+  }
+  .header__container .header__content .content-search button {
+    width: 30%;
+  }
+}
+
+.header__container .header__content {
+  width: 28%;
+}
+
+.header__container .header__content .content-bar {
+  font-size: 13px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header__container .header__content .content-bar > div {
+  position: relative;
+}
+
+.header__container .header__content .content-bar > div a {
+  text-decoration: none;
+  color: #555;
+}
+
+.header__container .header__content .content-bar > div a:hover {
+  color: red;
+}
+
+.header__container .header__content .content-bar .bar-logo > a::before {
+  content: "";
+  background-color: #555;
+  opacity: .5;
+  position: absolute;
+  width: 1px;
+  height: 11px;
+  right: 0;
+  bottom: 18%;
+}
+
+.header__container .header__content .content-bar .bar-text-2 > a::before {
+  content: "";
+  background-color: #555;
+  opacity: .5;
+  position: absolute;
+  width: 1px;
+  height: 11px;
+  left: 0;
+  bottom: 18%;
+}
+
+.header__container .content-search input {
+  width: 85%;
+  padding-left: 10px;
+  padding-bottom: 3px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.header__container .content-search input:focus {
+  outline: none;
+}
+
+.header__container .content-search input::-webkit-input-placeholder {
+  font-size: 13px;
+}
+
+.header__container .content-search input:-ms-input-placeholder {
+  font-size: 13px;
+}
+
+.header__container .content-search input::-ms-input-placeholder {
+  font-size: 13px;
+}
+
+.header__container .content-search input::placeholder {
+  font-size: 13px;
+}
+
+.header__container .content-search button {
+  width: 15%;
+  background-color: #e67e22;
+  color: #fff;
+  border: none;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.header__container .content-search button:hover {
+  background-color: #d35400;
+}
+
+.menu .navbar {
+  background-color: #e67e22;
+  color: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffa330), to(#fc7209));
+  background: linear-gradient(to bottom, #ffa330 0%, #fc7209 100%);
+}
+
+.menu .navbar .navbar-brand:hover {
+  color: red;
+  background-color: #ffa330;
+}
+
+.menu .navbar .navbar-toggler {
+  padding: 10px 15px;
+}
+
+.menu .navbar .navbar-toggler:focus {
+  outline: none;
+}
+
+.menu .navbar .navbar-toggler span i {
+  font-size: 22px;
+  color: #fff;
+}
+
+.menu .navbar .myNavbarlinks .navbar-nav .nav-item .nav-link {
+  padding: 15px 10px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.menu .navbar .myNavbarlinks .navbar-nav .nav-item .nav-link:hover, .menu .navbar .myNavbarlinks .navbar-nav .nav-item .nav-link.active {
+  color: red;
+  background-color: #ffa330;
+}
+
+.bill .bill__title {
+  width: 60%;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px dashed #29303b;
+  margin-bottom: 40px;
+}
+
+.bill .bill__content .bill__price .bill__price-title {
+  font-size: 26px;
+  text-decoration: underline;
+  padding-bottom: 5px;
+}
+
+.bill .bill__content .bill__price .table {
+  text-align: center;
+}
+
+.bill .bill__content .bill__price .table-bordered {
+  background-color: #1B3F95;
+  opacity: .9;
+  color: white;
+  border: 3px solid #dee2e6;
+}
+
+.bill .bill__content .bill__price .table-bordered .table-title {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.bill .bill__content .bill__result .bill__customer .name-input, .bill .bill__content .bill__result .bill__customer .number-input {
+  width: 65%;
+  border: none;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #dbdbdb;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.bill .bill__content .bill__result .bill__customer .name-input:focus, .bill .bill__content .bill__result .bill__customer .number-input:focus {
+  outline: none;
+  border-bottom-color: #e67e22;
+}
+
+.bill .bill__content .bill__result .bill__button {
+  margin-top: 40px;
+}
+
+.bill .bill__content .bill__result .bill__button a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 40px;
+  border-radius: 25px;
+  border: none;
+  border: 1px solid #FBFBFB;
+  color: #fff;
+  font-weight: 500;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFA330), to(#FC7209));
+  background: linear-gradient(to bottom, #FFA330 0%, #FC7209 100%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.bill .bill__content .bill__result .bill__button a:focus {
+  outline: none;
+}
+
+.bill .bill__content .bill__result .bill__button a:hover {
+  opacity: .9;
+  color: red;
+}
+
+@media screen and (max-width: 412px) {
+  .bill .bill__content .bill__result .bill__button a {
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
+
+.bill .bill__content .bill__result .bill__button .bill-btn {
+  padding: 8px 40px;
+  border-radius: 25px;
+  border: none;
+  border: 1px solid #FBFBFB;
+  color: #fff;
+  font-weight: 500;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFA330), to(#FC7209));
+  background: linear-gradient(to bottom, #FFA330 0%, #FC7209 100%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.bill .bill__content .bill__result .bill__button .bill-btn:focus {
+  outline: none;
+}
+
+.bill .bill__content .bill__result .bill__button .bill-btn:hover {
+  opacity: .9;
+  color: red;
+}
+
+.bill .bill__thanh-tien {
+  display: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bill .bill__thanh-tien h5 {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 22px;
+  color: red;
+}
+
+.bill .bill__thanh-tien .xuatTien {
+  color: purple;
+}
+
+.print {
+  display: none;
+  -webkit-animation: printBill 2s 1 0s linear;
+          animation: printBill 2s 1 0s linear;
+}
+
+.print .container {
+  background-color: #FBFBFB;
+  border-top: 2px dashed black;
+}
+
+.print .print__header .header-logo img {
+  width: 100%;
+}
+
+.print .print__header .header-title {
+  text-align: center;
+  color: #404C7E;
+}
+
+.print .print__header .header-title .header-title-text {
+  color: #98A9B4;
+}
+
+.print .print__header .header-title .header-title-text .header-title-date {
+  color: #505763;
+}
+
+.print .print__header .header-info h6 {
+  color: #98A9B4;
+}
+
+.print .print__header .header-info span {
+  color: transparent;
+  text-shadow: 0 0 6px grey;
+}
+
+.print .print__header .header-info .span-bold {
+  color: transparent;
+  text-shadow: 0 0 6px black;
+}
+
+.print .print__company h5 {
+  font-weight: bold;
+}
+
+.print .print__company h6 {
+  color: #98A9B4;
+}
+
+.print .print__company span {
+  color: transparent;
+  text-shadow: 0 0 6px grey;
+}
+
+.print .print__company .span-bold {
+  color: transparent;
+  text-shadow: 0 0 6px black;
+}
+
+.print .print__company .company-important {
+  font-size: 20px;
+  text-shadow: 0 0 6px red;
+}
+
+.print .print__customer .customer-name {
+  font-size: 18px;
+  color: #404C7E;
+}
+
+.print .print__customer .customer-name #customer-name-print {
+  color: black;
+  text-shadow: none;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.print .print__customer h6 {
+  color: #98A9B4;
+}
+
+.print .print__customer span {
+  color: transparent;
+  text-shadow: 0 0 6px grey;
+}
+
+.print .print__customer .span-bold {
+  color: transparent;
+  text-shadow: 0 0 6px black;
+}
+
+.print .print__customer .company-important {
+  font-size: 20px;
+  text-shadow: 0 0 6px red;
+}
+
+.print .print__customer-bill .table.table-bordered {
+  border: 1px solid black;
+}
+
+.print .print__customer-bill .table.table-bordered thead tr th {
+  border: 1px solid black;
+}
+
+.print .print__customer-bill .table.table-bordered tbody tr td {
+  border: 1px solid black;
+}
+
+.print .print__customer-bill .table-title {
+  background-color: #D8D7D5;
+  color: royalblue;
+}
+
+.print .print__customer-bill span {
+  color: transparent;
+  text-shadow: 0 0 6px grey;
+}
+
+.print .print__customer-bill .span-bold {
+  color: transparent;
+  text-shadow: 0 0 6px black;
+}
+
+.print .print__customer-bill .company-important {
+  font-size: 20px;
+  text-shadow: 0 0 6px red;
+}
+
+.print .print__customer-bill #xuatTien-bill {
+  font-size: 24px;
+  color: red;
+  font-weight: bold;
+}
+
+@-webkit-keyframes printBill {
+  0% {
+  }
+  1% {
+    -webkit-transform: translateY(-850px);
+            transform: translateY(-850px);
+  }
+  100% {
+  }
+}
+
+@keyframes printBill {
+  0% {
+  }
+  1% {
+    -webkit-transform: translateY(-850px);
+            transform: translateY(-850px);
+  }
+  100% {
+  }
+}
+
+.footer {
+  padding: 5px 0;
+  text-align: center;
+  background-color: #29303b;
+  color: #fff;
+}
+
+@media screen and (max-width: 378px) {
+  .footer .phone {
+    margin-top: 20px;
+    display: block;
+  }
+  .footer .break {
+    margin: 5px 0;
+    display: block;
+  }
+}
+/*# sourceMappingURL=main.css.map */

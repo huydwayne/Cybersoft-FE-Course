@@ -1,0 +1,21 @@
+.owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next{
+  position: absolute;
+  top: 41%;
+  left: -4%;
+  transform: translateY(-50%);
+  background-color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px 2px rgba(20, 23, 28, 0.1);
+  z-index: 10;
+  span{
+    color: $color-blue;
+    font-size: $fs-3 + 8px;
+    line-height: 28px;
+  }
+}
+.owl-carousel .owl-nav button.owl-next{
+  right: -3%;
+  left: unset;  
+}

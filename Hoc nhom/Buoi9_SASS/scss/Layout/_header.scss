@@ -1,0 +1,80 @@
+.header{
+  .navbar-brand{
+    flex-grow: 1;
+    img{
+      width: 110px;
+    }
+  }
+  .categories{
+    flex-grow: 1;
+    @include text($color-black-light, $fs-1, $fw-normal);
+  }
+  .input-search{
+    flex-grow: 5;
+    .input-group{
+      .form-control{
+        background-color: $color-gray-1;
+        border: none;
+        transition: none;
+        &::placeholder{
+          @include text($color-black-light, $fs-1, $fw-normal);
+        }
+        &:focus{
+          background-color: $color-white-0;
+          border: 1px solid $color-gray-2;
+          box-shadow: none;
+          border-right: none;
+          & + .input-group-append{
+            .input-group-text{
+              background-color: $color-white-0;
+              border: 1px solid $color-gray-2;
+              border-left: none;
+            }
+          }
+          & + .input-group-append:hover{
+            .input-group-text{
+              background-color: $color-red-0;
+              i{
+                color: $color-white-0;
+              }
+            }
+          }
+        }
+      }
+      .input-group-append{
+        .input-group-text{
+          background-color: $color-gray-1;
+          border: none;
+          i{
+            color: $color-red-0;
+          }
+        }
+        &:hover{
+          .input-group-text{
+            background-color: $color-red-0;
+            i{
+              color: $color-white-0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cart{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    text-align: center;
+    &:hover{
+      background-color: $color-gray-1;
+    }
+    i{
+      line-height: 40px;
+      
+    }
+  }
+}
+
+

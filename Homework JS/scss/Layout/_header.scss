@@ -1,0 +1,91 @@
+.header{
+    @include color($color-header-background,$color-header-text);
+    &__container{
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        @media screen and (max-width:547px){
+            justify-content: center;
+            .header__logo{
+                margin-bottom: 15px;
+                img{
+                    width: 100%;
+                }
+            }
+
+            .header__content{
+                .content-search{
+                    input{
+                        width: 90%;
+                    }
+                    button{
+                        width: 30%;
+                    }
+                }
+            }
+        }
+        .header__content{
+            width: 28%;
+            .content-bar{
+                font-size: $fs-1;
+                justify-content: flex-end;
+                align-items: center;
+                &>div{
+                    position: relative;
+                    a{
+                        text-decoration: none;
+                        color: $color-header-text;
+                        &:hover{
+                            color: $color-red-main;
+                        }
+                    }
+                }
+                .bar-logo > a::before{
+                    content: "";
+                    background-color: $color-header-text;
+                    opacity: .5;
+                    position: absolute;
+                    width: 1px;
+                    height: 11px;
+                    right: 0;
+                    bottom: 18%;
+                }
+                .bar-text-2 > a::before{
+                    content: "";
+                    background-color: $color-header-text;
+                    opacity: .5;
+                    position: absolute;
+                    width: 1px;
+                    height: 11px;
+                    left: 0;
+                    bottom: 18%
+                }
+            }
+        }
+
+        .content-search{
+            input{
+                width: 85%;
+                padding-left: 10px;
+                padding-bottom: 3px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                &:focus{
+                    outline: none;
+                }
+                &::placeholder{
+                    font-size: $fs-1;
+                }
+            }
+            button{
+                width: 15%;
+                @include color($color-main,$color-white-0);
+                border: none;
+                transition: all 0.5s;
+                &:hover{
+                    background-color: #d35400;
+                }
+            }
+        }
+    }
+}
